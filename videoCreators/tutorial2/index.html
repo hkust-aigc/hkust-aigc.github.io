@@ -16,6 +16,7 @@
 </head>
 
 <body>
+  
   <!--top navigation-->
 
   <div class = "topbar">
@@ -67,7 +68,6 @@
 
     <article> 
       <h2 class = "Title"> Fatezero </h2>
-      <h3 class = "Author"> <span>WANG, Yifan </span> </h3>
 
       <!--The following includes a subtitle and a text-->
       <h3 class = "Subtitle"> 
@@ -79,8 +79,7 @@
         <span> 
           <!-- &nbsp is a character entity reference that stands for "non-breaking space."-->
           &nbsp; &nbsp; Generating and editing visual content with text prompts has become an exciting new capability enabled by recent advances in AI. However, due to the enormous randomness in the generation process, applying such models to real-world visual content editing, especially for videos, remains challenging. In this studio, we present FateZero, a novel zero-shot text-based video editing tool that allows users to make targeted edits to real-world video content without any per-prompt training or use-specific masking.
-          To make the tool more accessible, I will demonstrate the steps using Hugging Face Space at https://huggingface.co/spaces/chenyangqi/FateZero.
-          
+          To make the tool more accessible, I will demonstrate the steps using Hugging Face Space at <a href = "https://huggingface.co/spaces/chenyangqi/FateZero"></a>https://huggingface.co/spaces/chenyangqi/FateZero.
         </span>
       </p>
 
@@ -105,15 +104,7 @@
         You can use the below code part to show your demo videos in the sytle that the website adopts
       -->
       
-      <!-- <div class = "video-grid">
-        <div class ="video-item">
-          <video src="your_video1.mp4" alt="Video 1" controls>
-        </div>
-            
-        <div class ="video-item">
-          <video src="your_video2.mp4" alt="Video 2" controls>
-        </div>
-      </div> -->
+      
 
       <br>
 
@@ -126,7 +117,15 @@
           &nbsp; &nbsp; Although brief, our tool represents the first demonstration of the ability of zero-shot text-driven video style and local attribute editing from the trained text-to-image model. We also achieve improved zero-shot shape-aware editing based on a one-shot text-to-video model. Extensive experiments demonstrate superior temporal consistency and editing capabilities compared to previous works.
         </span>
       </p>
-
+      <div class = "video-grid">
+        <div class ="video-item">
+          <video src="/videos/FateZero/1.mp4" alt="Video 1" controls>
+        </div>
+            
+        <div class ="video-item">
+          <video src="/videos/FateZero/2.mp4" alt="Video 2" controls>
+        </div>
+      </div>
       <br>
 
       <h3 class = "Subtitle">
