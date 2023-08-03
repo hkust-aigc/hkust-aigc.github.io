@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang = "en-us">
+
+<head>
+  <meta charset="utf-8">
+  <meta name = "description" content="A studio that shows videos produced by generative AI">
+  <meta name = "keywords" content="Generative AI,video,github">
+  <meta name = "viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+  <title> HKUST AIGC Studio</title>
+
+  <link rel = "stylesheet" href = "/css/reset.css">
+  <link rel = "stylesheet" href = "/css/pageStyle.css">
+  <link rel = "stylesheet" href = "/css/topbar.css">
+  <link rel = "stylesheet" href = "/css/tutorial.css">
+  <link rel = "stylesheet" href = "/css/videoSytle.css">
+</head>
+
+<body>
+  
+  <!--top navigation-->
+
+  <div class = "topbar">
+
+    <div class = "container clearfix">
+      <!--logo-->
+
+      <div class = "topbar-icon leftfix">
+        <a href = "/"> <img class = "logo" src="/images/logo.png" alt="HKUST AIGC logo"> </a>
+      </div>
+
+      <!--navigation-->
+
+      <div class = "topbar-navigation rightfix">
+        <ul class = "list clearfix">
+          <li> 
+            <a href= "/explore"> Explore</a> 
+          </li>
+          <li> 
+            <a href="/showcase" > Showcase </a> 
+          </li>
+        </ul>
+
+        <div class = "Creator">
+          <a href="/videoCreators"> 
+            <button> Create </button>
+          </a> 
+        </div>
+
+        <div class = "searchBox">
+          <form action = "/search/creations/">
+            <input type = "text" name = "searchText" placeholder = "Search HKUST AIGC Studio">
+            <button> search </button>
+          </form> 
+        </div>
+        
+      </div>
+
+    </div>
+  </div>
+
+  <div class = "tutorial">
+
+    <article> 
+      <h2 class = "Title"> <span> 🕺🕺🕺 Follow Your Pose 💃💃💃 </span></h2>
+      <h3 class = "Author"> <span>LIN, Xinxin</span> </h3>
+
+      <h3 class = "Subtitle"> 
+        <span> Introduction </span>
+      </h3>
+      <p class = "Text"> 
+        <span> 
+            Nowadays, Generating text-editable and pose-controllable character videos have an imperious demand in creating various digital human. Follow Your Pose is a useful Pose-Guided Text-to-Video text-to-video generation model allows users to create high-quality character videos from text descriptions while offering control over character poses using human skeletons. 
+        </span>
+        <span>
+            This article will introduce the different parameters of this AI-powered tool to guide you through creating your own video. To make the tool more accessible, steps will be demonstrate using openxlab at 
+            <a href = "https://openxlab.org.cn/apps/detail/houshaowei/FollowYourPose"> Openxlab:follow your pose</a>. Or you can also try in colab <a href = "https://colab.research.google.com/github/mayuelala/FollowYourPose/blob/main/quick_demo.ipynb"> Colab:follow your pose</a>.
+        </span>
+      </p>
+
+      <h3 class = "Subtitle">
+        <span> Model </span>
+      </h3>
+      <p class = "Text">
+        <span>
+          Follow Your Pose is designed based on a pre-trained text-to-image model with powerful semantic editing and composition capabilities. The model features a two-stage training scheme that utilizes large-scale image pose pairs and diverse pose-free datasets. The schematic diagram of the model is shown below：
+        </span>
+        
+        <div style="text-align: center;">
+          <img src="/images/Follow-your-pose/model.png" alt="model">
+        </div>
+      </p>
+      <p class = "Text">
+        <span>
+          In the first stage, a zero-initialized convolutional pose encoder injects pose information into the network structure, while in the second stage, the image model is inflated to a 3D network adding the learnable temporal self-attention and reformed cross-frame self-attention blocks to learn temporal coherence from pose-free videos. The proposed approach generates creative and coherent videos while retaining the original model's conceptual combination ability. Therefore, the model can create high-quality character videos from text description and also control their pose via the given control signal.
+        </span>
+      </p>
+
+
+      <h3 class = "Subtitle">
+        <span> Parameter Guided </span>
+      </h3>
+      <p class = "Text">
+        <span>
+          There are five parameters in this model that you can edit: The type of input video, Temporal Crop offset & Sampling Stride, Spatial Crop offset, Text Prompt, and DDIM Parameters. In the next paragraphs, I will explain the usage of these parameters and post the demo video for you.
+        </span>
+      </p>
+
+      <h4 class = "subsub">
+        <span>The type of input video</span>
+      </h4>
+      <p class = "sub_text">
+        <span>
+          Here are two type of the input video: Raw Video or skeleton Video. The Raw video refers to the unprocessed video; the Skeleton video refers to the processed video with black background and preserved motion pose. As shown below, the left is the Raw video, and the right is the Skeleton video.
+        </span>
+        <div class = "video-grid-2">
+          <div class ="video-item" >
+            <video src="/videos/Follow-your-pose/bear8.mp4" alt="Raw Video" controls></video>
+            <h2>Raw Video</h2>
+          </div>
+              
+          <div class ="video-item">
+            <video src="/videos/Follow-your-pose/seed1.mp4" alt="Skeleton video" controls></video>
+            <h2>Skeleton video</h2>
+          </div>
+        </div>
+      </p>
+
+      <p class = "sub_text">
+        <span>
+          The Skeleton video is significantly better than the Raw video regarding stability and efficiency. If the Raw video is used as input, the model must first calculate the corresponding Skeleton video, which will cause some errors. So I recommend using the Skeleton video directly as input to this model.
+        </span>
+      </p>
+
+      <h4 class = "subsub">
+        <span>Temporal Crop offset & Sampling Stride</span>
+      </h4>
+      <p class = "sub_text">
+        <span>
+          "Temporal Crop offset" and "Sampling Stride" refer to two parameters that control how the algorithm samples frames from a video to use for depth estimation and matting. Together, these parameters allow the model to efficiently and effectively sample frames from a video for depth estimation and matting, while also providing flexibility to adapt to different video datasets and tasks.
+        </span>
+      </p>
+      <h5 class = "subsubsub">
+        <span> • Temporal Crop offset</span>
+      </h5>
+      <p class="subsub_text">
+        <span>
+          "Temporal Crop offset" determines the starting point in time for sampling frames from the video. For example, if the temporal crop offset is set to 10, the algorithm will start sampling frames 10 frames after the beginning of the video. This can be useful for excluding frames at the beginning of a video that may not be relevant to the task at hand.
+        </span>
+        <div class = "video-grid">
+          <div class ="video-item" >
+            <video src="/videos/Follow-your-pose/seed1.mp4" alt="input video" controls></video>
+            <h2>Input</h2>
+          </div>
+          <div class ="video-item">
+            <img src="/videos/Follow-your-pose/seed1-8.gif" alt="Temporal Crop offset: 8" controls></img>
+            <h2>Temporal Crop offset: 8</h2>
+          </div>
+          <div class ="video-item">
+            <img src="/videos/Follow-your-pose/seed1-32.gif" alt="Temporal Crop offset: 32" controls></img>
+            <h2>Temporal Crop offset: 32</h2>
+          </div>
+        </div>
+      </p>
+
+      <h5 class = "subsubsub">
+        <span> • Sampling Stride</span>
+      </h5>
+      <p class="subsub_text">
+        <span>
+          "Sampling Stride" determines the interval at which frames are sampled from the video. For example, if the sampling stride is set to 2, the algorithm will skip every other frame when sampling frames for depth estimation and matting. This can be useful for reducing the amount of computation required, as well as for avoiding redundant information in consecutive frames.
+        </span>
+        <div class = "video-grid">
+          <div class ="video-item">
+            <video src="/videos/Follow-your-pose/seed2.mp4" alt="Input Video" controls></video>
+            <h2>Input</h2>
+          </div>
+          <div class ="video-item">
+            <img src="/videos/Follow-your-pose/seed2-1.gif" alt="Sampling Stride: 1" controls></img>
+            <h2>Sampling Stride: 1</h2>
+          </div>
+          <div class ="video-item">
+            <img src="/videos/Follow-your-pose/seed2-20.gif" alt="Sampling Stride: 20" controls></img>
+            <h2>Sampling Stride: 20</h2>
+          </div>
+        </div>
+      </p>
+
+      <h4 class = "subsub">
+        <span>Spatial Crop offset</span>
+      </h4>
+      <p class = "sub_text">
+        <span>
+          "Spatial Crop offset" determines the starting point in the spatial domain for cropping the input video before passing it through the network for depth estimation and matting.
+        </span>
+        <span>
+          The input video is first resized to a fixed size, and then cropped using a fixed spatial crop size. The spatial crop offset determines the position within the resized image where the cropping should start. For example, if the spatial crop offset is set to (10, 10), the cropping will start 10 pixels to the right and 10 pixels down from the top-left corner of the resized image.
+        </span>
+        <div class = "video-grid">
+          <div class ="video-item" >
+            <video src="/videos/Follow-your-pose/seed2.mp4" alt="Imput Video" controls></video>
+            <h2>Input</h2>
+          </div>
+          <div class ="video-item">
+            <img src="/videos/Follow-your-pose/seed2-1.gif" alt="Zero offset" ></img>
+            <h2>Zero offset</h2>
+          </div>
+          <div class ="video-item">
+            <img src="/videos/Follow-your-pose/seed2-200.gif" alt="Right & Top crop: 200" ></img>
+            <h2>Right & Top crop: 200</h2>
+          </div>
+        </div>
+      </p>
+      <br>
+      <p class = "sub_text">
+        <span>
+          Spatial cropping can be useful for several reasons. For example, it can help remove irrelevant or noisy regions from the input image that may negatively impact the depth estimation and matting performance. Additionally, it can help improve computational efficiency by reducing the size of the input image that needs to be processed by the network.
+        </span>
+      </p>
+
+      <h4 class = "subsub">
+        <span>Text Prompt</span>
+      </h4>
+      <p class = "sub_text">
+        <span>
+         "Text Prompt" is used to guide the graph generation process by constraining the set of possible graphs that the model can generate. By incorporating prior knowledge and preferences encoded in textual prompts, the model is able to generate more relevant and useful graphs for downstream tasks.
+        </span>
+        <span>
+          Different text input will produce different effects, you can try the following input:
+        </span>
+        <ul>
+          <li>
+            <span>
+              "white rabbit dancing among flowers"
+            </span>
+          </li>
+          <li>
+            <span>
+              "hulk at the beach"
+             </span>  
+          </li>
+        </ul>
+      </p>
+      <p class="sub_text">
+        <span>
+          If you have more novel ideas, welcome to try in <a href = "https://openxlab.org.cn/apps/detail/houshaowei/FollowYourPose"> Openxlab:follow your pose</a>. But it is worth noting that the number of objects in the text input should not exceed the number of characters in the input video, which will cause unstable video generation.
+        </span>
+        <span>
+          More intersting demo video are as follows:
+        </span>
+        <div class = "img-grid">
+          <div class ="gif-item" >
+            <img src="/videos/Follow-your-pose/sample-a/panda.gif" loop playsinline></img>
+            <h2>A Panda on the sea</h2>
+          </div>
+          <div class ="gif-item">
+            <img src="/videos/Follow-your-pose/sample-a/robot.gif" loop playsinline></img>
+            <h2>A Robot is dancing in Sahara desert</h2>
+          </div>
+          <div class ="gif-item">
+            <img src="/videos/Follow-your-pose/sample-a/astro.gif" loop playsinline></img>
+            <h2>An Astronaut</h2>
+          </div>
+        </div>
+        <br>
+        <div class = "img-grid">
+          <div class ="gif-item" >
+            <img src="/videos/Follow-your-pose/sample-b/park.gif" loop playsinline></img>
+            <figcaption>A man in the park, Van Gogh style</figcaption>
+          </div>
+          <div class ="gif-item">
+            <img src="/videos/Follow-your-pose/sample-b/bat.gif" loop playsinline></img>
+            <figcaption>Batman brown background</figcaption>
+          </div>
+          <div class ="gif-item">
+            <img src="/videos/Follow-your-pose/sample-b/baby.gif" loop playsinline></img>
+            <figcaption>Tiny cute boy in the beach, at sunset</figcaption>
+          </div>
+        </div>
+      </p>
+      <br>
+      <br>
+
+      <h4 class = "subsub">
+        <span>DDIM Parameters</span>
+      </h4>
+      <p class = "sub_text">
+        <span>
+          "Number of Steps" and "CFG Scale" are two important hyperparameters that control the depth estimation and matting process. But it is worth noting that increasing their values will also increase the calculation time, so please adjust your expected values reasonably.
+        </span>
+      </p>
+      <h5 class = "subsubsub">
+        <span> • Number of Steps</span>
+      </h5>
+      <p class="subsub_text">
+        <span>
+          "Number of Steps" refers to the number of iterations that the algorithm performs to estimate the depth map and the alpha matte. Each iteration refines the current estimate by incorporating information from the input image and the estimated alpha matte and depth map from the previous iteration.
+        </span>
+        <span>
+          Increasing the number of steps can improve the accuracy of the depth map and alpha matte estimation, but also increases the computational cost of the algorithm. Finding the optimal number of steps usually requires experimentation and validation on a held-out dataset.
+        </span>
+      </p>
+      <br>
+      <h5 class = "subsubsub">
+        <span> • CFG Scale</span>
+      </h5>
+      <p class="subsub_text">
+        <span>
+          "CFG Scale" refers to the scale of the coarse-to-fine guidance (CFG) network used in DDIM. The CFG network is a hierarchical network that helps refine the alpha matte and depth map estimate by providing coarse-to-fine guidance at different scales.
+        </span>
+        <span>
+          Increasing the CFG scale can improve the accuracy of the depth map and alpha matte estimation, but also increases the computational cost of the algorithm. Finding the optimal CFG scale usually requires experimentation and validation on a held-out dataset.
+        </span>
+        <div style="text-align: center;">
+          <img src="images\example.png">
+        </div>
+      </p>
+      <p class = "Text">
+        <span>
+          Finally, I put the links of <a href = "https://openxlab.org.cn/apps/detail/houshaowei/FollowYourPose"> Openxlab: follow your pose</a>, <a href = https://huggingface.co/spaces/YueMafighting/FollowYourPose>Hugging Face: follow your pose</a>, <a href = https://github.com/mayuelala/FollowYourPose>Colab: follow your pose</a> here for everyone to try. You are also welcome to visit the main website <a href = https://follow-your-pose.github.io> 🕺🕺🕺 Follow Your Pose 💃💃💃</a> for more academic details.
+        </span>
+      </p>
+
+
+      <h3 class = "Subtitle">
+        <span> Conclusion </span>
+      </h3>
+
+      <p class = "Text">
+        <span>
+        Collectively, Follow your pose tackle the problem of generating texteditable and pose-controllable character videos. The author design a new two-stage training scheme that can utilize the large-scale image pose pairs and the diverse pose-free dataset. It can generate novel and creative temporally coherent videos with the preservation of the conceptual combination ability of the original T2I model. Hopefully this tutorial provides guidance for effectively using <a href = https://follow-your-pose.github.io> 🕺🕺🕺 Follow Your Pose 💃💃💃</a>.
+        </span>
+      </p>
+
+      <h3 class = "Subtitle">
+        <span> Reference </span>
+      </h3>
+
+      <p class = "Text">
+        <span>
+          Ma, Y., He, Y., Cun, X., Wang, X., Shan, Y., Li, X., & Chen, Q. (2023). Follow Your Pose: Pose-Guided Text-to-Video Generation using Pose-Free Videos. arXiv preprint <a href = https://arxiv.org/abs/2304.01186>	arXiv:2304.01186</a>.
+        </span>
+      </p>
+
+    </article>
+
+  </div>
+</body>
