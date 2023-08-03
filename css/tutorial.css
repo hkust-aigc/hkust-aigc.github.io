@@ -71,6 +71,10 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
 }
+.video-item h2 {
+  margin: 10px 0;
+  font-size: 1.2rem;
+}
 
 video {
   max-width: 100%;

@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang = "en-us">
+
+<head>
+  <meta charset="utf-8">
+  <meta name = "description" content="A studio that shows videos produced by generative AI">
+  <meta name = "keywords" content="Generative AI,video,github">
+  <meta name = "viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+  <title> HKUST AIGC Studio</title>
+
+  <link rel = "stylesheet" href = "/css/reset.css">
+  <link rel = "stylesheet" href = "/css/pageStyle.css">
+  <link rel = "stylesheet" href = "/css/topbar.css">
+  <link rel = "stylesheet" href = "/css/tutorial.css">
+  <link rel = "stylesheet" href = "/css/videoSytle.css">
+</head>
+
+<body>
+  
+  <!--top navigation-->
+
+  <div class = "topbar">
+
+    <div class = "container clearfix">
+      <!--logo-->
+
+      <div class = "topbar-icon leftfix">
+        <a href = "/"> <img class = "logo" src="/images/logo.png" alt="HKUST AIGC logo"> </a>
+      </div>
+
+      <!--navigation-->
+
+      <div class = "topbar-navigation rightfix">
+        <ul class = "list clearfix">
+          <li> 
+            <a href= "/explore"> Explore</a> 
+          </li>
+          <li> 
+            <a href="/showcase" > Showcase </a> 
+          </li>
+        </ul>
+
+        <div class = "Creator">
+          <a href="/videoCreators"> 
+            <button> Create </button>
+          </a> 
+        </div>
+
+        <div class = "searchBox">
+          <form action = "/search/creations/">
+            <input type = "text" name = "searchText" placeholder = "Search HKUST AIGC Studio">
+            <button> search </button>
+          </form> 
+        </div>
+        
+      </div>
+
+    </div>
+  </div>
+
+  <!--Never modify the above code to avoid ruining the website-->
+
+  <div class = "tutorial">
+
+    <!--The following is what you need to modify-->
+    <!--This a template which contains title, subtitle and text part of your article-->
+    <!---->
+
+    <article> 
+      <h2 class = "Title"> All-In-One-Deflicker </h2>
+      <h3 class = "Author"> <span>	AU Kwan Wo</span> </h3>
+
+      <!--The following includes a subtitle and a text-->
+      <h3 class = "Subtitle"> 
+        <span> Introduction </span>
+      </h3>
+      <p class = "Text">
+        <!--It is also recommend to wrap each paragraph with <span> tags.--> 
+        <span> 
+          <!-- &nbsp is a character entity reference that stands for "non-breaking space."-->
+          &nbsp; &nbsp; All-In-One-Deflicker is a general postprocessing framework that can remove different types of flicker from various videos, including videos from video capturing, processing, and generation. 
+        </span>
+      </p>
+
+      <!--You can copy the above part yourself to write the remaining parts-->
+
+      <br> <!--It is used to create a line break or a new line-->
+
+      <h3 class = "Subtitle">
+        <span> Setting up </span>
+      </h3>
+      <p class = "Text">
+        <span>
+          &nbsp; &nbsp; A set up for the model is provided in a <a href="https://colab.research.google.com/drive/1y5Ucu_S3rEDIPzSO8Sw-RDAiwxX18pod?usp=sharing">Google Colab notebook</a> as a demonstration. Follow the instructions
+          to create the environment for the tool to work. You can also set up locally for faster runtime.
+          Note that Linux is required to run the model with conda installed for setting up and managing environments. Details can be found under the github page: 
+          <a href="https://github.com/ChenyangLEI/All-In-One-Deflicker">https://github.com/ChenyangLEI/All-In-One-Deflicker</a>
+        </span>
+      </p>
+      
+      <!--
+        You can use the below code part to show your demo videos in the sytle that the website adopts
+      -->
+      
+      <!-- <div class = "video-grid">
+        <div class ="video-item">
+          <video src="your_video1.mp4" alt="Video 1" controls>
+        </div>
+            
+        <div class ="video-item">
+          <video src="your_video2.mp4" alt="Video 2" controls>
+        </div>
+      </div> -->
+
+      <br>
+
+      <h3 class = "Subtitle">
+        <span> Prompt </span>
+      </h3>
+      <p class = "Text">
+        <span>
+          &nbsp; &nbsp; To use the deflicker directly, you would only need to input the media you want to process, which can either be a video file or a folder with images (as 'frames' of a video).
+          Nevertheless, if the result is unsatisfactory, more advanced options could also be considered:
+          <ul><li> <b>Iteration numbers</b>: you can increase the iteration numbers to increase the number of times processing the video.</li>
+          <li> <b>Optical flow loss weight</b>: you can tune the optical_flow_coeff according to the intensity of flicker in your video</li>
+          <li> <b>Downsample rate</b>: downsample rate can be adjusted according to your own needs. It would affect the convergence and slightly influences the quality</li>
+          <li> <b>Maximum number of frames</b>: maximum_number_of_frames could be adjusted to limit the number of frames in the output. Please note that it is recommend to split long videos into several</li>
+          shorter sequences as performance for longer videos is yet to be evaluated.</ul>
+        </span>
+      </p>
+
+
+      <h3 class = "Subtitle">
+        <span> Demonstrations </span>
+      </h3>
+      <p class = "Text">
+        <span>
+          &nbsp; &nbsp; All-In-One-Deflicker can process a variety of videos. Some demonstrations would be shown below for your reference. (videos are generated with pretrained weights downloaded from github page)
+          film grains:
+        </span>
+          <div class = "video-grid">
+            <div class ="video-item">
+              <video src="/videos/All-In-One-Deflicker/film_grain.mp4" alt="Video 1" controls></video>
+              <h2> original</h2>
+            </div>
+            <div class ="video-item">
+              <video src="/videos/All-In-One-Deflicker/film_grain_output.mp4" alt="Video 2" controls></video>
+              <h2> result </h2>
+            </div>
+          </div>
+        </p>
+
+        <p class = "Text">
+          <span>
+          old cartoons:
+          </span>
+          <div class = "video-grid">
+            
+            <div class ="video-item">
+              <video src="/videos/All-In-One-Deflicker/Popeye_meetsSinbadtheSailor.mp4" alt="Video 1" controls></video>
+              <h2> original </h2>
+            </div>
+                
+            <div class ="video-item">
+              result
+              <video src="/videos/All-In-One-Deflicker/Popeye_meetsSinbadtheSailor_output.mp4" alt="Video 2" controls></video>
+                <h2> result </h2>
+
+            </div>
+
+          </div>
+        </p>
+
+        <p class = "Text">
+          <span>
+          video shooting on computer screen
+          </span>
+          <div class = "video-grid">
+            
+            <div class ="video-item">
+              <video src="/videos/All-In-One-Deflicker/screen-capture-480p.mp4" alt="Video 1" controls> </video>
+                <h2> original </h2>
+            </div>
+                
+            <div class ="video-item">
+              <video src="/videos/All-In-One-Deflicker/screen-capture-480p_output.mp4" alt="Video 2" controls></video>
+                <h2> result </h2>
+
+            </div>
+
+          </div>
+        </p>
+        <p class = "Text">
+          <span>limit testing the model on extreme light flickering:</span>
+          <div class = "video-grid">
+           
+            <div class ="video-item">
+              <video src="/videos/All-In-One-Deflicker/light_corridor.mp4" alt="Video 1" controls></video>
+                <h2> original </h2>
+            </div>
+                
+            <div class ="video-item">
+              result
+              <video src="/videos/All-In-One-Deflicker/light_corridor_output.mp4" alt="Video 2" controls></video>
+                <h2> result </h2>
+            </div>
+
+          </div>
+      </p>
+
+      <br> 
+
+      
+      <h3 class = "Subtitle">
+        <span> interesting findings </span>
+      </h3>
+      <p class = "Text">
+        <span>
+          &nbsp; &nbsp; While the output still has flicker for the limit testing on the extreme light flickering example, a better result could be 
+          observed in concat.mp4 generated by the model under the neural_filter folder.
+
+          <video src="/videos/All-In-One-Deflicker/light_corridor_concat.mp4" alt="Video 1" controls></video>
+         
+
+          It is surprising to see the video in the middle has flickering issues completely eliminated despite the lowered resolution. In extreme cases like this,
+          one can also consider checking the concat.mp4 in search for a optimal result.
+
+        </span>
+      </p>
+      <br>
+
+      <h3 class = "Subtitle">
+        <span> Conclusion </span>
+      </h3>
+      <p class = "Text">
+        <span>
+          &nbsp; &nbsp; Flicking in video shooting is a very common problem that occurs when frame rate and shutter speed do not match the capture of fractions of light pulses(try shooting a video on computer screen). 
+          In the past, deflickering either required manually adjusting parameters in dedicated softwares or only produced satisfactory results on specfic types of deflicking, but
+          such types of issues can now be easily solved in All-In-One-Deflicker wtih significant effects on processing old cartoons, AI-generated videos and video captures.
+        </span>
+      </p>
+
+      <h3 class = "Subtitle">
+        <span> reference </span>
+      </h3>
+      <p class = "Text">
+        <span>
+          &nbsp; &nbsp;
+        </span>
+      </p>
+
+      <!--It' s up to you to write more-->
+
+    </article>
+
+  </div>
+</body>
+
+<!--
+
+<h3 class = "Subtitle">
+        <span> Your Subtitle </span>
+      </h3>
+      <p class = "Text">
+        <span>
+          &nbsp; &nbsp; Your words
+        </span>
+      </p>
+
+-->
