@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang = "en-us">
+
+<head>
+  <meta charset="utf-8">
+  <meta name = "description" content="A studio that shows videos produced by generative AI">
+  <meta name = "keywords" content="Generative AI,video,github">
+  <meta name = "viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+  <title> HKUST AIGC Studio</title>
+
+  <link rel = "stylesheet" href = "/css/reset.css">
+  <link rel = "stylesheet" href = "/css/pageStyle.css">
+  <link rel = "stylesheet" href = "/css/topbar.css">
+  <link rel = "stylesheet" href = "/css/tutorial.css">
+  <link rel = "stylesheet" href = "/css/videoSytle.css">
+</head>
+
+<body>
+  
+  <!--top navigation-->
+
+  <div class = "topbar">
+
+    <div class = "container clearfix">
+      <!--logo-->
+
+      <div class = "topbar-icon leftfix">
+        <a href = "/"> <img class = "logo" src="/images/logo.png" alt="HKUST AIGC logo"> </a>
+      </div>
+
+      <!--navigation-->
+
+      <div class = "topbar-navigation rightfix">
+        <ul class = "list clearfix">
+          <li> 
+            <a href= "/explore"> Explore</a> 
+          </li>
+          <li> 
+            <a href="/showcase" > Showcase </a> 
+          </li>
+        </ul>
+
+        <div class = "Creator">
+          <a href="/videoCreators"> 
+            <button> Create </button>
+          </a> 
+        </div>
+
+        <div class = "searchBox">
+          <form action = "/search/creations/">
+            <input type = "text" name = "searchText" placeholder = "Search HKUST AIGC Studio">
+            <button> search </button>
+          </form> 
+        </div>
+        
+      </div>
+
+    </div>
+  </div>
+
+  <!--Never modify the above code to avoid ruining the website-->
+
+  <div class = "tutorial">
+
+    <!--The following is what you need to modify-->
+    <!--This a template which contains title, subtitle and text part of your article-->
+    <!---->
+
+    <article> 
+      <h2 class = "Title"> <span> ControlVideo </span></h2>
+      <h3 class = "Author"> MA, Mingfei</span> </h3>
+      
+      <!--The following includes a subtitle and a text-->
+      <h3 class = "Subtitle"> 
+        <span> Introduction </span>
+      </h3>
+      <p class = "Text">
+        <span>
+          In this tutorial, I will introduce a rising technology called ControlVideo which can help us generate videos according to the text that we type in and avoid wasting time and energy on fussy and meaningless video clip, as well as improving our understanding and control on the video production. Adopting text-driven diffusion models and stable diffusion and adapted from ControlNet, ControlVideo is a revolutionary technology which can not only enhance the temporal consistency and quality of reproduction of the video, but also preserve the original structure of the source video. To make the tool more accessible, I will demonstrate the steps using Hugging Face Space at 
+          <a href = "https://huggingface.co/spaces/Yabo/ControlVideo"> https://huggingface.co/spaces/Yabo/ControlVideo </a>.
+        </span>
+ 
+        <img src="/images/ControlVideo/1.png" alt="model" style="display: block; margin:auto; max-width: 60%">
+      </p>
+      
+      <h3 class = "Subtitle">
+        <span> Method </span>
+      </h3>
+      <p class = "Text">
+        <span>
+          ControlVideo takes a different approach from other text-to-video tools and uses motion or pose as one of its core inputs. Firstly, to ensure the appearance coherence between frames which previously was done with a very rough inference, ControlVideo adds full cross-frame interaction and self-attention module and this is pretty similar to something like applying stable diffusion or ControlNet to every frame and then stitching them back together. However, ControlVideo is adding more context to the calculation going on when you are going from frame to frame. Secondly, to mitigate the flicker effect, it introduces an interleaved frame smoother that employs frame interpolation on alternated frames. And this basically means that it can look like several frames ahead and then randomizes so that you can get a nice distribution. Finally, to produce log videos efficiently, it utilizes a hierarchical sampler that separately synthesizes each short clip with holistic coherency.
+        </span>
+        <img src="/images/ControlVideo/2.png" style="display: block; margin:auto; max-width: 60%">
+      </p>
+
+      <h3 class = "Subtitle">
+        <span> Result-HED Boundary Control </span>
+      </h3>
+      <p class = "Text">
+        <span>
+          HED Boundary is a technique for edge detection in images that uses a deep neural network to produce rich hierarchical features. It can help to resolve ambiguity and preserve object boundaries in natural images. It can also be used as a condition to guide the image generation process from text. HED Boundary Control preserves many details in input images, making this app suitable for recoloring and stylizing.
+        </span>
+        <br>
+        <div class = "video-grid">
+          <div class ="video-item">
+            <video src="/videos/ControlVideo/car10-a red car.mp4" alt="Video 1" controls></video>
+          </div>
+            
+          <div class ="video-item">
+            <video src="/videos/ControlVideo/girl7-a girl with golden dress.mp4" alt="Video 2" controls></video>
+          </div>
+        </div> 
+      </p>
+
+      <h3 class = "Subtitle">
+        <span> Result-Canny Edge Map Control </span>
+      </h3>
+      <p class = "Text">
+        <span>
+          Canny Edge Map Control is a technique for adding extra conditions to diffusion models by using canny edge detection. Canny edge detection is a method for finding edges in images by using gradients and thresholds. It can be used to generate images from text with more control over the shape and structure of the objects.
+        </span>
+        <br>
+        <div class = "video-grid">
+          <div class ="video-item">
+            <video src="/videos/ControlVideo/car11-a red car.mp4" alt="Video 1" controls></video>
+          </div>
+            
+          <div class ="video-item">
+            <video src="/videos/ControlVideo/girl8-a girl, red hair.mp4" alt="Video 2" controls></video>
+          </div>
+        </div> 
+      </p>
+
+      <h3 class = "Subtitle">
+        <span> Result-Depth Map Control </span>
+      </h3>
+      <p class = "Text">
+        <span>
+          A depth map is an image that contains information about the distance of the surfaces of scene objects from a viewpoint. Depth map control is a technique that allows you to manipulate the depth map of an image using different inputs, such as edge map, scribbles, etc. It can be used for various purposes, such as creating 3D stereo images, normal maps, or 3D meshes. Depth map can preserve more details compared with the normal map. However, the normal model seems to be a bit better at preserving the geometry. And this is intuitive: minor details are not salient in the depth maps, but are salient in normal maps.
+        </span>
+        <br>
+        <div class = "video-grid">
+          <div class ="video-item">
+            <video src="/videos/ControlVideo/cake2-a cake with romantic pure red candlestick, beautifully backlit, matte painting concept art.mp4" alt="Video 1" controls>
+          </div>
+            
+          <div class ="video-item">
+            <video src="/videos/ControlVideo/back1-the back view of a woman, Toei Animation style.mp4" alt="Video 2" controls>
+          </div>
+        </div> 
+      </p>
+
+      <h3 class = "Subtitle">
+        <span> Result-Pose Control </span>
+      </h3>
+      <p class = "Text">
+        <span>
+          Pose control in ControlVideo is a way to manipulate the pose of a human figure in an image using a pose map as an input. It allows you to change the pose of a human figure in an image without affecting the appearance or style of the image. For example, you can make a person look like they are running, dancing, or sitting using pose control in ControlVideo. This can be useful for creating animations, editing photos, or generating new images.
+        </span>
+        <br>
+        <div class = "video-grid">
+          <div class ="video-item">
+            <video src="/videos/ControlVideo/dance26-Sherlock Holmes is dancing, on the street of london, raining.mp4" alt="Video 1" controls></video>
+          </div>
+            
+          <div class ="video-item">
+            <video src="/videos/ControlVideo/sport11-a brown bear is skateboarding.mp4" alt="Video 2" controls></video>
+          </div>
+        </div> 
+      </p>
+
+      <h3 class = "Subtitle">
+        <span> Usage </span>
+      </h3>
+      <p class = "Text">
+        <span>
+          This is a guidance to use this tool properly that will teach you step by step. First, you need to choose a video from the drop-down menu or upload your own source video. Second, choose a text prompt from the drop-down menu or enter your own text prompt in the text box. Then, click on the “Generate” button to start the video editing process and wait for the result. After that, you can play the original and edited videos side by side and compare them. At last, click the “Download” button to download the edited video if you want.
+        </span>
+      </p>
+
+      <h3 class = "Subtitle">
+        <span> Significance </span>
+      </h3>
+      <p class = "Text">
+        <span>
+          ControlVideo can edit videos without any training or fine-tuning, which saves time and resources. Moreover, it can preserve the structure and motion of the source video while changing the appearance and style according to the text. Apart from these, it can also generate videos with high fidelity and temporal consistency, which are important for realistic video synthesis. Maybe in the near future, we can use this tool to create various videos and even movies. And it is firmly convinced that it will push the technology and science of human beings to a height that is never reached in the foreseeable future. With the development and optimizing of ControlVideo, it has occupied a significant position and played a leading role in the AI technology which will definitely influence everyone’s life in the future. Undoubtfully, the development of ControlVideo is a great progress in AI area and has great significance and profound influence.
+        </span>
+      </p>
+
+      <h3 class = "Subtitle">
+        <span> Conclusion </span>
+      </h3>
+      <p class = "Text">
+        <span>
+          Collectively, ControlVideo offers you an impressive AI-powered tool for generating realistic videos from text prompts. Hopefully, this tutorial provides guidance for effectively using ControlVideo.
+        </span>
+      </p>
+
+      <h3 class = "Subtitle">
+        <span> Reference </span>
+      </h3>
+      <p class = "Text">
+        <span>
+          Yabo Zhang (2023, May 22). ControlVideo: Training-free Controllable Text-to-Video Generation. <a href = "https://arxiv.org/abs/2305.13077">https://arxiv.org/abs/2305.13077 </a>
+        </span>
+      </p>
+
+      <!--
+        You can use the below code part to show your demo videos in the sytle that the website adopts
+      -->
+      
+      <!-- <div class = "video-grid">
+        <div class ="video-item">
+          <video src="your_video1.mp4" alt="Video 1" controls>
+        </div>
+            
+        <div class ="video-item">
+          <video src="your_video2.mp4" alt="Video 2" controls>
+        </div>
+      </div> -->
+
+
+      <!--It' s up to you to write more-->
+
+    </article>
+
+  </div>
+</body>
