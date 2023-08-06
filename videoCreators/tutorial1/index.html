@@ -15,10 +15,6 @@
   <link rel = "stylesheet" href = "/css/videoSytle.css">
 </head>
 
-<style>
-  img 
-</style>
-  
 <body>
   
   <!--top navigation-->
@@ -83,7 +79,7 @@
           <!-- &nbsp is a character entity reference that stands for "non-breaking space."-->
           &nbsp; &nbsp; VideoCrafter is a video creation toolbox consisting of:
             <ul>
-                <li> A text-to-video (T2V) latent diffusion model : LVDM  
+                <li> A text-to-video (T2V) diffusion model : LVDM  
                 <li> A finetuning mechanism to train the LVDM on specific datasets and reduce training parameters : VideoLoRA 
                 <li> A conditional adapter based on T2I-adpater to increase the controls on video generation
             </ul>
@@ -92,39 +88,45 @@
           <br>
         
         <h3 class = "Subtitle"> <!-- Amadika : Add subsection to the stylesheet if you want --> 
-            <span> How to Run VideoCrafter </span>
+            <span> How to Use VideoCrafter </span>
         </h3>
         <p class = "Text">
         <span>
-          &nbsp; &nbsp; There are a couple of ways you ccan lay around with VideoCrafter. You can run it locally, run a demo on HuggingFace or
+          &nbsp; &nbsp; <h2>There are a couple of ways you can lay around with VideoCrafter. You can run it locally, run a demo on HuggingFace or
           the Google Colabatory notebook.
-          Here's a guide on how to get the results you want from VideoCrafter. 
-    
+          
+          Prompt engineering : prompt engineering is the most important parameter when it comes to generative models. Wriitng a descriptive prompt which covers most or all different 
+            
           <ul>
               <li>
                 Sampling steps : the number of sampling steps used adjusts how much the diffusion model denoises the data (which in a diffusion model is 100% random noise) per step. At every step the model is predicting what the image is supposed to look like. Adding more steps implies that execution will take longer but at every step the model is making a probabilistic assumption based on a less noisy image.
+                
               </li>
+              <div class = "video-grid">
+                <h2> Prompt: "teddy bear playing the piano, high definition, 4k", LoRA 1,  </h2>
+                <div class = "video-item">
+                  <video src = "/videos/VideoCrafter/teddy_bear_playing_piano_high_definition_4k_1.mp4" alt = "1 Sampling Step" controls> 
+                  <h2> 1 sampling step </h2>
+                </div>
+              <div class = "video-item">
+                  <video src = "/videos/VideoCrafter/teddy_bear_playing_piano_high_definition_4k_10.mp4" alt = "10 Sampling Step" controls> 
+                  <h2> 10 sampling step </h2>
+                  </div>
+              <div class = "video-item">
+                  <video sc = "/videos/VideoCrafter/teddy_vbear_laying_piano_high_definition_4k_50.mp4" alt = "50 sampling" controls>
+                  <h2> 50 sampling step </h2>
+                  </div>
+              </div>
             <!-- Mention in the paper where this comes up when you're talking about variance in the diffusion process -->
               <li> CFG scale : Stands for Coefficient of Fluctuation Growth. Adjusting this scale adjusts how faithful the generated output is to the prompt. It quantifies the rate of change of the variance of a diffusion process. 
               </li> 
            
-              <li> ETA : weight of noise for added noise in diffusion step. (DDIM parameter) </li>
+              <li> eta (η) : weight of noise for added noise in diffusion step. This is a parameter used in the reverse process of the diffusion model. </li>
               <li> LoRA scale : LoRA is a finetuning framework that can be used to train the base diffusion model on more specialised datasets to generate results with different features.  </li>
           </ul>
       </span>
         
-           <div class = "video-grid">
-              <div class = "video-item">
-                <video src = "/videos/VideoCrafter/teddy_bear_playing_piano_high_definition_4k_1.mp4" alt = "1 Sampling Step" controls> 
-                </div>
-            <div class = "video-item">
-                <video src = "/videos/VideoCrafter/teddy_bear_playing_piano_high_definition_4k_10.mp4" alt = "10 Sampling Step" controls> 
-                </div>
-            <div class = "video-item">
-                <video sc = "/videos/VideoCrafter/teddy_vbear_laying_piano_high_definition_4k_50.mp4" alt = "50 sampling" controls>
-            </div>
-            </div>
-        
+            
       </p>
 
 
