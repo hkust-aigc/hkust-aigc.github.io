@@ -135,9 +135,13 @@
       </h3>
       <p class = "Text">
         <span>
-          &nbsp; &nbsp; Latent diffusion models are a type of machine learning model that map the characteristics of a dataset to a lower-dimensional latent space 
-          to make computations more tractable. 
-          Diffusion models work by 
+          &nbsp; &nbsp; Diffusion models are among the more mathematically involved generative models. For more explanation on the math behind these models, see <a href="https://docs.google.com/document/d/1NKoy3RDuaZDxErRxup23iSF2cxetZocSf_t-n1R1Hn8/edit?usp=sharing">this doc.</a>
+          Latent diffusion models are a type of machine learning model that map the characteristics of a dataset to a lower-dimensional latent space through an encoder. 
+          A key intuition when considering how machine learning models is : it is desired that every arbitrary data sample can be represented by a well-understood distribution so that established properties can be used to make computations more efficient. 
+          
+          Diffusion models "generate" by "diffusing" an existing image of a certain class into complete noise, and then un-diffusing it into a sensible sample. This ends up generating a new image as the calculations are approximate and we make smart assumptions to preserve the structure of the image while making things more efficient. 
+          
+  
         </span>
       </p>
 
