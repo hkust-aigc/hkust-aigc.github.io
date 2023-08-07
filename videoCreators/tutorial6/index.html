@@ -67,18 +67,18 @@
     <!---->
 
     <article> 
-      <h2 class = "Title"> All-In-One-Deflicker </h2>
-      <h3 class = "Author"> <span>	AU Kwan Wo</span> </h3>
+      <h2 class="Title"> All-In-One-Deflicker </h2>
+      <h3 class="Author"> <span>	AU Kwan Wo</span> </h3>
 
       <!--The following includes a subtitle and a text-->
-      <h3 class = "Subtitle"> 
+      <h3 class="Subtitle"> 
         <span> Introduction </span>
       </h3>
-      <p class = "Text">
+      <p class="Text">
         <!--It is also recommend to wrap each paragraph with <span> tags.--> 
         <span> 
           <!-- &nbsp is a character entity reference that stands for "non-breaking space."-->
-          &nbsp; &nbsp; All-In-One-Deflicker is a general postprocessing framework that can remove different types of flicker from various videos, including videos from video capturing, processing, and generation. 
+          &nbsp; &nbsp; All-In-One-Deflicker is a general postprocessing framework that can remove different types of flickers from various videos, including videos from video capturing, processing, and generation. 
         </span>
       </p>
 
@@ -86,14 +86,14 @@
 
       <br> <!--It is used to create a line break or a new line-->
 
-      <h3 class = "Subtitle">
+      <h3 class="Subtitle">
         <span> Setting up </span>
       </h3>
-      <p class = "Text">
+      <p class="Text">
         <span>
-          &nbsp; &nbsp; A set up for the model is provided in a <a href="https://colab.research.google.com/drive/1y5Ucu_S3rEDIPzSO8Sw-RDAiwxX18pod?usp=sharing">Google Colab notebook</a> as a demonstration. Follow the instructions
-          to create the environment for the tool to work. You can also set up locally for faster runtime.
-          Note that Linux is required to run the model with conda installed for setting up and managing environments. Details can be found under the github page: 
+          &nbsp; &nbsp; A setup for the model is provided in a <a href="https://colab.research.google.com/drive/1y5Ucu_S3rEDIPzSO8Sw-RDAiwxX18pod?usp=sharing">Google Colab notebook</a> as a demonstration. Follow the instructions
+          to create the environment for the tool to work. You can also set it up locally for faster runtime.
+          Note that Linux is required to run the model with conda installed for setting up and managing environments. Details can be found under the Github page: 
           <a href="https://github.com/ChenyangLEI/All-In-One-Deflicker">https://github.com/ChenyangLEI/All-In-One-Deflicker</a>
         </span>
       </p>
@@ -114,144 +114,222 @@
 
       <br>
 
-      <h3 class = "Subtitle">
+      <h3 class="Subtitle">
         <span> Prompt </span>
       </h3>
-      <p class = "Text">
+      <p class="Text">
         <span>
           &nbsp; &nbsp; To use the deflicker directly, you would only need to input the media you want to process, which can either be a video file or a folder with images (as 'frames' of a video).
-          Nevertheless, if the result is unsatisfactory, more advanced options could also be considered:
-          <ul><li> <b>Iteration numbers</b>: you can increase the iteration numbers to increase the number of times processing the video.</li>
+          Nevertheless, if the result is unsatisfactory, some hyperparameters could also be manually modified in src/config/config_flow_100.json if you are cloning to the local machine. Otherwise, you can directly change the values in the input box provided if you are using colab notebook.
+          The following are descriptions of some of the important hyperparameters.
+          </span></p><ul><li> <b>Iteration numbers</b>: you can increase the iteration numbers to increase the number of times processing the video. (It is recommended to keep iteration numbers low in colab notebook for reasonable processing time)</li>
           <li> <b>Optical flow loss weight</b>: you can tune the optical_flow_coeff according to the intensity of flicker in your video</li>
-          <li> <b>Downsample rate</b>: downsample rate can be adjusted according to your own needs. It would affect the convergence and slightly influences the quality</li>
-          <li> <b>Maximum number of frames</b>: maximum_number_of_frames could be adjusted to limit the number of frames in the output. Please note that it is recommend to split long videos into several</li>
+          <li> <b>Alpha flow factor</b>: this parameter is only used when you are processing videos with segmentation masks. You can lower the alpha_flow_factor for videos with minor flickering</li>
+          <li> <b>Maximum number of frames</b>: maximum_number_of_frames could be adjusted to limit the number of frames in the output. Please note that it is recommended to split long videos into several</li>
           shorter sequences as performance for longer videos is yet to be evaluated.</ul>
-        </span>
-      </p>
+
+          <p class="Text"><span>
+            &nbsp; &nbsp;Alternatively, you can also process videos with segmentation masks using Carvekit to further improve the atlas by removing the background of the videos, especially for videos with salient objects or humans. This implementation currently supports only one foreground object with a background. 
+          Note that using segmentation masks can significantly increase the process time and it is suggested to also increase the number of iterations with segmentation masks on.
+          </span></p>
+
+      <p></p>
 
 
-      <h3 class = "Subtitle">
+      <h3 class="Subtitle">
         <span> Demonstrations </span>
       </h3>
-      <p class = "Text">
+      <p class="Text">
         <span>
-          &nbsp; &nbsp; All-In-One-Deflicker can process a variety of videos. Some demonstrations would be shown below for your reference. (videos are generated with pretrained weights downloaded from github page)
-          film grains:
+          &nbsp; &nbsp; All-In-One-Deflicker can process a variety of videos. Some demonstrations would be shown below for your reference. (videos are generated with pre-trained weights downloaded from Github page) <br>
+          &nbsp; &nbsp;film grains:
         </span>
-          <div class = "video-grid">
-            <div class ="video-item">
-              <video src="/videos/All-In-One-Deflicker/film_grain.mp4" alt="Video 1" controls></video>
+          </p><div class="video-grid">
+            <div class="video-item">
+              <video src="/videos/All-In-One-Deflicker/film_grain.mp4" alt="Video 1" controls=""></video>
               <h2> original</h2>
             </div>
-            <div class ="video-item">
-              <video src="/videos/All-In-One-Deflicker/film_grain_output.mp4" alt="Video 2" controls></video>
+            <div class="video-item">
+              <video src="/videos/All-In-One-Deflicker/film_grain_output.mp4" alt="Video 2" controls=""></video>
               <h2> result </h2>
             </div>
           </div>
-        </p>
+        <p></p>
 
-        <p class = "Text">
+        <p class="Text">
           <span>
-          old cartoons:
+            &nbsp; &nbsp;old cartoons:
           </span>
-          <div class = "video-grid">
+          </p><div class="video-grid">
             
-            <div class ="video-item">
-              <video src="/videos/All-In-One-Deflicker/Popeye_meetsSinbadtheSailor.mp4" alt="Video 1" controls></video>
+            <div class="video-item">
+              <video src="/videos/All-In-One-Deflicker/Popeye_meetsSinbadtheSailor.mp4" alt="Video 1" controls=""></video>
               <h2> original </h2>
             </div>
                 
-            <div class ="video-item">
-              result
-              <video src="/videos/All-In-One-Deflicker/Popeye_meetsSinbadtheSailor_output.mp4" alt="Video 2" controls></video>
+            <div class="video-item">
+              <video src="/videos/All-In-One-Deflicker/Popeye_meetsSinbadtheSailor_output.mp4" alt="Video 2" controls=""></video>
                 <h2> result </h2>
 
             </div>
 
           </div>
-        </p>
 
-        <p class = "Text">
+
+        <p class="Text">
           <span>
-          video shooting on computer screen
+            &nbsp; &nbsp;video shooting on computer screen:
           </span>
-          <div class = "video-grid">
+          <div class="video-grid">
             
-            <div class ="video-item">
-              <video src="/videos/All-In-One-Deflicker/screen-capture-480p.mp4" alt="Video 1" controls> </video>
+            <div class="video-item">
+              <video src="/videos/All-In-One-Deflicker/screen-capture-480p.mp4" alt="Video 1" controls=""> </video>
                 <h2> original </h2>
             </div>
                 
-            <div class ="video-item">
-              <video src="/videos/All-In-One-Deflicker/screen-capture-480p_output.mp4" alt="Video 2" controls></video>
+            <div class="video-item">
+              <video src="/videos/All-In-One-Deflicker/screen-capture-480p_output.mp4" alt="Video 2" controls=""></video>
                 <h2> result </h2>
 
             </div>
 
           </div>
-        </p>
-        <p class = "Text">
-          <span>limit testing the model on extreme light flickering:</span>
-          <div class = "video-grid">
-           
-            <div class ="video-item">
-              <video src="/videos/All-In-One-Deflicker/light_corridor.mp4" alt="Video 1" controls></video>
-                <h2> original </h2>
-            </div>
-                
-            <div class ="video-item">
-              result
-              <video src="/videos/All-In-One-Deflicker/light_corridor_output.mp4" alt="Video 2" controls></video>
-                <h2> result </h2>
-            </div>
 
-          </div>
-      </p>
+          <br>
 
-      <br> 
-
-      
-      <h3 class = "Subtitle">
-        <span> interesting findings </span>
+      <h3 class="Subtitle">
+        <span> hyperparameters </span>
       </h3>
-      <p class = "Text">
-        <span>
-          &nbsp; &nbsp; While the output still has flicker for the limit testing on the extreme light flickering example, a better result could be 
-          observed in concat.mp4 generated by the model under the neural_filter folder.
 
-          <video src="/videos/All-In-One-Deflicker/light_corridor_concat.mp4" alt="Video 1" controls></video>
+      <p class="Text"><span>&nbsp; &nbsp;Hyperparamters adjusting on sample video:</span></p>
+      <div class = "video-grid">
+
+        <div class ="video-item">
+          <video src="/videos/All-In-One-Deflicker/Winter_Scenes_in_Holland.mp4" alt="Video 1" controls></video>
+            <h2> original </h2>
+        </div>
+
+        <div class ="video-item">
+          <video src="/videos/All-In-One-Deflicker/Winter_Scenes_in_Holland_default_output.mp4" alt="Video 2" controls></video>
+            <h2> default hyperparamter </h2>
+        </div>
+
+        <div class="video-item">
+          <video src="/videos/All-In-One-Deflicker/Winter_Scenes_in_Holland(optical_flow=5,iteration=15000).mp4" alt="Video 2" controls=""></video>
+            <h2> iteration_number: 15000 <br> optical_flow_coeff: 5 <br> segmentation mask </h2>
+        </div>
+
+      </div>
+      
+      
+      <p class="Text"><span>&nbsp; &nbsp;As mentioned on github page, the usage of segmentation mask has a limited impact on the final quality. On the other hand, it is worth mentioning lowering optical_flow_coeff from 500 to 5 does not result in a significant downgrade albeit seemingly quite a flickering video. 
+        Below shows a detailed comparison:
+      </span></p>
+
+      <img src="/images/All-In-One-Deflicker/Winter_Scenes_in_Holland_comparison.png" style="display: block; margin:auto; max-width: 60%">
+
+      <p class = "Text"> <span>&nbsp; &nbsp;The result on the right is processed with segmentation mask while that on the left is processed with default hyperparameters without segmentation mask. It is observed that with segmentation mask on, the color has more constrasts and the patterns of the man’s scarf and shirt also appear sharper.</span></p>
+
+      <p class="Text"><span>
+        &nbsp; &nbsp;Out of curiosity, I have tried applying the tool to a more extreme sample to see the effects. Normally, deflickering this sample on software by hand would require a large amount of work due to the rapid change of colours from the light. Below is the result processed with different hyperparameters.
+      </span></p>
+
+      <p class="Text">
+        <span>&nbsp; &nbsp;limit testing:</span>
+        </p>
+        <div class="video-grid">
          
+          <div class="video-item">
+            <video src="/videos/All-In-One-Deflicker/light_corridor.mp4" alt="Video 1" controls=""></video>
+              <h2> original </h2>
+          </div>
+              
+          <div class="video-item">
+            <video src="/videos/All-In-One-Deflicker/light_corridor_output.mp4" alt="Video 2" controls=""></video>
+              <h2> result <br> default </h2>
+          </div>
 
-          It is surprising to see the video in the middle has flickering issues completely eliminated despite the lowered resolution. In extreme cases like this,
-          one can also consider checking the concat.mp4 in search for a optimal result.
+          <div class="video-item">
+            <video src="/videos/All-In-One-Deflicker/light_corridor(optical_flow_coeff=50000000,sample_batch=4).mp4" alt="Video 2" controls=""></video>
+              <h2> result <br> optical_flow_coeff: 50000000<br>sample_batch: 4 </h2>
+          </div>
+
+        </div>
+
+        <p class="Text">
+          <span>&nbsp; &nbsp;Comparison between default output and hyperparamter adjusted output:</span>
+          </p>
+
+        <img src="/images/All-In-One-Deflicker/light_corridor_comparison.png" style="display: block; margin:auto; max-width: 60%">
+
+        <p class="Text">
+          <span>&nbsp; &nbsp;In the result, the video on the left is the default output while that on the right is the adjusted output. The first observed effect is the darkened color scheme of the video on the right. The effect is generally shown in the reflection of the light on the ground with sharper edges. Using segmentation mask with very high 'alphe_flow_factor' and 'iteration_number' resulted in a similar result. Therefore, adjusting the hyperparameters will not deviate from the default output much.</span>
+        </p>
+
+        <p class="Text">
+        <span>
+          &nbsp; &nbsp; Surprisingly, a better result could be 
+          observed in concat.mp4 generated by the model under the neural_filter folder instead:
+          </span>
+          <video src="/videos/All-In-One-Deflicker/light_corridor_concat.mp4" alt="Video 1" controls=""></video>
+
+
+          <img src="/images/All-In-One-Deflicker/light_corridor_concat.jpg" style="display: block; margin:auto; max-width: 60%">
+         
+        <span>
+          As shown in the figure, the image in the middle has no white region. It is quite stunning to see the video in the middle has flickering issues completely eliminated despite the lowered resolution. In extreme cases like this,
+          one can also consider checking the concat.mp4 in search of an optimal result.
 
         </span>
       </p>
-      <br>
 
       <h3 class = "Subtitle">
+        <span> Significance </span>
+      </h3>
+      <p class = "Text">
+        <span>
+          &nbsp; &nbsp; At the moment, one common approach to handle deflickering issues is by recruiting human experts to manually process videos using commercial software. Below is an image from the research paper showing a comparison between human experts and All-In-One-Deflicker by the researchers.
+        </span>
+      </p>
+
+      <img src="/images/All-In-One-Deflicker/comparison.png" style="display: block; margin:auto; max-width: 60%">
+
+
+      <p class = "Text"> <span>
+        <br> &nbsp; &nbsp; With similar results, All-In-One-Deflicker can process a larger amount of data at a significantly lower cost. Deflickering on videos manually has always been time consuming and inconvenient, and All-One-In-Deflicker shows automation in such field is ready to be introduced.
+        <br> <br> &nbsp; &nbsp; Besides, prior work usually requires specific information of input such as flickering frequency, manual annotations, or extra consistent videos to remove the flicker. For this tool, no extra guidance is required to process the video. Due to this 'blind flickering' approach, it can have wide applications.
+      </span></p>
+
+      <h3 class="Subtitle">
         <span> Conclusion </span>
       </h3>
-      <p class = "Text">
+      <p class="Text">
         <span>
-          &nbsp; &nbsp; Flicking in video shooting is a very common problem that occurs when frame rate and shutter speed do not match the capture of fractions of light pulses(try shooting a video on computer screen). 
-          In the past, deflickering either required manually adjusting parameters in dedicated softwares or only produced satisfactory results on specfic types of deflicking, but
-          such types of issues can now be easily solved in All-In-One-Deflicker wtih significant effects on processing old cartoons, AI-generated videos and video captures.
+          &nbsp; &nbsp; Flicking in video shooting is a very common problem that occurs when frame rate and shutter speed do not match the capture of fractions of light pulses, but  
+          All-In-One-Deflicker can make the processing automated and convenient.
+          This tutorial introduced it as a tool for you to process your own videos without needing to manually adjust effects on commercial software. 
+          It would be nice if the tutorial could help you understand how to make use of this tool.
         </span>
+        
       </p>
 
-      <h3 class = "Subtitle">
+      <h3 class="Subtitle">
         <span> reference </span>
       </h3>
-      <p class = "Text">
+      <p class="Text">
         <span>
-          &nbsp; &nbsp;
+          &nbsp; &nbsp; Lei, C., Ren, X., Zhang, Z., &amp; Chen, Q. (2023, March 14). Blind video deflickering by neural filtering with a flawed Atlas. arXiv.org. <a href="https://arxiv.org/abs/2303.08120">https://arxiv.org/abs/2303.08120</a>
         </span>
       </p>
 
       <!--It' s up to you to write more-->
 
     </article>
+
+
+
+
+
 
   </div>
 </body>
