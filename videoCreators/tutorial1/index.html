@@ -15,7 +15,7 @@
   <link rel = "stylesheet" href = "/css/videoSytle.css">
 
   <style>
-    subheading
+    img { }
   </style>
 </head>
 
@@ -87,7 +87,7 @@
                 <li> A finetuning mechanism to train the LVDM on specific datasets and reduce training parameters : VideoLoRA 
                 <li> A conditional adapter based on T2I-adpater to increase the controls on video generation
             </ul>
-          
+          VideoCrafter has the interesting feature of allowing long-form video generation. The mechanisms used to achieve this are interesting, as typically 
         </span>
           <br>
         
@@ -146,7 +146,7 @@
           
           Diffusion models "generate" by "diffusing" an existing image of a certain class into complete noise, and then un-diffusing it into a sensible sample. This ends up generating a new image as the calculations are approximate and we make smart assumptions to preserve the structure of the image while making calculations more efficient. 
           
-      In an attempt to make this math of all this less hand-wavey, let's get into it.
+      In an attempt to make this math of all this less hand-wavey, let's take a bird-eye's view of the mathematics. We fix a variance 
         </span>
       </p>
 
