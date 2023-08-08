@@ -89,16 +89,16 @@
             </ul>
           VideoCrafter has the interesting feature of allowing long-form video generation. The mechanisms used to achieve this are interesting, as typically diffusion models fail for longer form content generation. Using autoregressive latent prediction and unconditional guidance, techniques which are further described in <a href ="https://arxiv.org/pdf/2211.13221.pdf">the original LVDM paper</a>[1].
         </span>
-        
+      </p>
         
         <h3 class = "Subtitle"> <!-- Amadika : Add subsection to the stylesheet if you want --> 
             <span> How to Use VideoCrafter </span>
         </h3>
         <p class = "Text">
         <span>
-          &nbsp; &nbsp; There are a couple of ways you can play around with VideoCrafter. You can run it locally, run a demo on HuggingFace or the Google Colabatory notebook.
+          &nbsp; &nbsp; There are a couple of ways you can play around with VideoCrafter. You can run it locally, run a <a href = "https://huggingface.co/VideoCrafter">demo on HuggingFace</a>, <a href = "https://colab.research.google.com/github/VideoCrafter/VideoCrafter/blob/main/quick_demo.ipynb">the Google Colabatory notebook</a> or on <a href = "https://replicate.com/cjwbw/videocrafter">Replicate.</a>
           <br>
-          Prompt engineering : prompt engineering is the most important parameter when it comes to generative models. Wriitng a descriptive prompt which covers most or all different elements of the desired output. A good resource to understand further is <a href="https://stable-diffusion-art.com/how-to-come-up-with-good-prompts-for-ai-image-generation/" >here </a>. 
+          Prompt engineering : prompt engineering is the most important parameter when it comes to generative models. Wriitng a descriptive prompt which covers most or all different elements of the desired output. A good resource to understand further is <a href="https://stable-diffusion-art.com/how-to-come-up-with-good-prompts-for-ai-image-generation/" >here </a>. <br>
 
           The HuggingFace demo of VideoCrafter shows us the features we have available to play around with. <br> <img src= "/videos/VideoCrafter/Screenshot 2023-08-07 at 10.17.54.png">
           <ul>
@@ -128,6 +128,22 @@
            
               <li> eta (η) : weight of noise for added noise in diffusion step. This is a parameter used in the reverse process of the diffusion model. </li>
               <li> LoRA scale : LoRA is a finetuning framework that can be used to train the base diffusion model on more specialised datasets to generate results with different features. The LoRA scale on the model is only useful if using a LoRA model.</li>
+            <h2> LoRA demonstration; Prompt : "black cat eating ice cream, animated", sampling steps = 50 </h2>
+            <div class = "video-grid">
+              
+                <div class = "video-item">
+                  <video src = "/videos/VideoCrafter/teddy_bear_playing_piano_high_definition_4k_1.mp4" alt = "1 Sampling Step" controls> 
+                  <h2> 1 sampling step </h2>
+                </div>
+              <div class = "video-item">
+                  <video src = "/videos/VideoCrafter/teddy_bear_playing_piano_high_definition_4k_10.mp4" alt = "10 Sampling Step" controls> 
+                  <h2> 10 sampling step </h2>
+                  </div>
+              <div class = "video-item">
+                  <video sc = "/videos/VideoCrafter/teddy_bear_playing_piano_high_definition_4k_50.mp4" alt = "50 sampling" controls>
+                  <h2> 50 sampling step </h2>
+                  </div>
+              </div>
           </ul>
       </span>
         
@@ -159,11 +175,11 @@
       <br>
 
       <h3 class = "Subtitle">
-        <span> LoRA for finetuning </span>
+        <span> Inferences </span>
       </h3>
       <p class = "Text">
         <span>
-          &nbsp; &nbsp; LoRA 
+          &nbsp; &nbsp; In my observations with VideoCrafter, it does a good job of rendering simple prompts. Diffusion models in general seem to be good at identifying and generating images around one main subject and unless in simple cases, fail to generate multiple complex elements. This would make sense considering the mechanism as explained above. 
         </span>
       </p>
       
@@ -184,11 +200,17 @@
       <br>
       
       <h3 class = "Subtitle">
-        <span> Your Subtitle </span>
+        <span> References </span>
       </h3>
       <p class = "Text">
         <span>
-          &nbsp; &nbsp; Your words
+          &nbsp; &nbsp; He, Y., Yang, T., Zhang, Y., Shan, Y. & Chen, Q. 2023 Latent Video Diffusion Models for High-Fidelity Long Video Generation. arXiv:2211.13221 https://arxiv.org/abs/2211.13221 <br>
+          Goodfellow, I., Pouget-Abadie, J., Mirza M., Xu, B., Warde-Farley, D., Qzair, S., Courville, A. & Bengio, Y. 2014 General Adversarial Networks arXiv:1406.2661 https://arxiv.org/abs/1406.2661 <br>
+Feller, W. 1949 On The Theory of Stochastic Processes With Particular Reference to Applications Project for Research in Probability <br>
+Sohl-Dickstein, J., Weiss, E., Maheswaranathan, N., & Ganguli, S. 2015 Deep Unsupervised Learning using Nonequilibrium Thermodynamics arXiv:1503.03585 https://arxiv.org/abs/1503.03585 <br>
+Blattman, A., Rombach, R., Ling, H., Dockhorn, T., Kim, S., Fidler, S. & Kreis, K. 2023 Align Your Latents. IEEE Conference on Computer Vision and Pattern Recognition. arXiv:2304.08818  https://arxiv.org/abs/2304.08818 <br>
+
+Graikos, AYellapragada S. & Samaras, D. 2023 Conditional Generation from Unconditional Diffusion Models using Denoiser Representations. arXiv:2306.01900 https://arxiv.org/pdf/2306.01900.pdf 
         </span>
       </p>
 
