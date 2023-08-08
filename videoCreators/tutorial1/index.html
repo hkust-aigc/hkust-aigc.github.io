@@ -101,8 +101,6 @@
                 <li> A finetuning mechanism to train the LVDM on specific datasets and reduce training parameters : VideoLoRA 
                 <li> A conditional adapter based on T2I-adpater to increase the controls on video generation
             </ul>
-         <h3> VideoCrafter has the interesting feature of allowing long-form video generation. The mechanisms used to achieve this are interesting, as typically diffusion models fail for longer form content generation. Using autoregressive latent prediction and unconditional guidance, techniques which are further described in <a href ="https://arxiv.org/pdf/2211.13221.pdf">the original LVDM paper.</a> </h3>
-        </span>
       </p>
     <br>
         <h3 class = "Subtitle"> <!-- Amadika : Add subsection to the stylesheet if you want --> 
@@ -198,6 +196,8 @@
       <p class = "Text">
         <span>
           &nbsp; &nbsp; In my observations with VideoCrafter, it does a good job of rendering simple prompts. Diffusion models in general seem to be good at identifying and generating images around one main subject and unless in simple cases, fail to generate multiple complex elements. This would make sense considering the mechanism as explained above. 
+        <br>
+          VideoCrafter has the interesting feature of allowing long-form video generation. The mechanisms used to achieve this are interesting, as typically diffusion models fail for longer form content generation. Using autoregressive latent prediction and unconditional guidance, techniques which are further described in <a href ="https://arxiv.org/pdf/2211.13221.pdf">the original LVDM paper.</a>
         </span>
       </p>
       
