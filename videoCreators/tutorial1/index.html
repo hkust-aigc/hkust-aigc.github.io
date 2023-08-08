@@ -145,8 +145,12 @@
           A key intuition when considering how machine learning models is : it is desired that every arbitrary data sample can be represented by a well-understood distribution so that established properties can be used to make computations more efficient. 
           
           Diffusion models "generate" by "diffusing" an existing image of a certain class into complete noise, and then un-diffusing it into a sensible sample. This ends up generating a new image as the calculations are approximate and we make smart assumptions to preserve the structure of the image while making calculations more efficient. 
-          
-      In an attempt to make this math of all this less hand-wavey, let's take a bird-eye's view of the mathematics. We fix a variance 
+  
+      In an attempt to make this math of all this less hand-wavey, let's take a bird-eye's view of the mathematics. 
+      We have a data point which we will use to convert into an image of the same category. 
+      Let's say this data point, x_0 resembles a distribution q(x). We then have the 
+      We fix a variance schedule, that influences the variance in the noisiness between timesteps. We fix T of these, where T is the chosen number of sampling steps. By the end of this forward process, we've converted the sample to pure noise. <br>
+          We can now start generating a never-seen-before image out of this noise. If we try to take the posterior of the previous Markovian process,  
         </span>
       </p>
 
