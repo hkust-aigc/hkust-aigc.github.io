@@ -146,11 +146,13 @@
           
           Diffusion models "generate" by "diffusing" an existing image of a certain class into complete noise, and then un-diffusing it into a sensible sample. This ends up generating a new image as the calculations are approximate and we make smart assumptions to preserve the structure of the image while making calculations more efficient. 
   
-      In an attempt to make this math of all this less hand-wavey, let's take a bird-eye's view of the mathematics. 
+      In an attempt to make this less hand-wavey, let's take a bird-eye's view of the mathematics. 
       We have a data point which we will use to convert into an image of the same category. 
-      Let's say this data point, x_0 resembles a distribution q(x). We then have the 
-      We fix a variance schedule, that influences the variance in the noisiness between timesteps. We fix T of these, where T is the chosen number of sampling steps. By the end of this forward process, we've converted the sample to pure noise. <br>
-          We can now start generating a never-seen-before image out of this noise. If we try to take the posterior of the previous Markovian process,  
+      Let's say this data point, x_0 resembles a distribution q(x). We assume that the process of adding noise to this distribution is a Markovian process, and we model it by q(x_t | x_{t-1}).
+      We fix a variance schedule, {β} that influences the variance in the noisiness between timesteps. We fix T of these, where T is the chosen number of sampling steps. By the end of this forward process, we've converted the sample to pure noise. <br>
+          We can now start generating a never-seen-before image out of this noise. If we try to take the posterior of the previous Markovian process, if the covariance between the distributions at two consecutive timesteps is small enough, it can be shown that the posterior follows approximately the same distribution as the original process. Thus we have an approximate posterior, called p(x_{t-1} | x_t), and the real distribution q(x_{t-1} | x_t). We will leverage the distribution p(x_t) till we can remove all the noise from the sample and resolve it to a new image. Different diffusion models use different models of p. If we try to model p as close to q as possible, p would be a Markovian process as well and be computationally heavy. This is the concept of Denoising Diffusion Probabilistic Models (DDPM). Denoising Diffusion Implicit Models, as used in VideoCrafter, ease computational complexity by assuming a non-Markovian reverse process distribution. <br>
+
+        The training objective of diffusion models is an optimisation function comparing the approximate distribution p and the actual reverse distribution q. Since we cannot possibly compute the real values of these effectively, we use a variational lower bound (as in VAEs), using KL Divergence and cross-entropy. If you wish to learn more about this, you may want to check out <a href = "https://nlp.stanford.edu/fsnlp/mathfound/fsnlp-slides-kl.pdf">this link</a> and then <a href = ""> this one.</a>
         </span>
       </p>
 
