@@ -87,9 +87,9 @@
                 <li> A finetuning mechanism to train the LVDM on specific datasets and reduce training parameters : VideoLoRA 
                 <li> A conditional adapter based on T2I-adpater to increase the controls on video generation
             </ul>
-          VideoCrafter has the interesting feature of allowing long-form video generation. The mechanisms used to achieve this are interesting, as typically 
+          VideoCrafter has the interesting feature of allowing long-form video generation. The mechanisms used to achieve this are interesting, as typically diffusion models fail for longer form content generation. Using autoregressive latent prediction and unconditional guidance, techniques which are further described in <a href ="https://arxiv.org/pdf/2211.13221.pdf">the original LVDM paper</a>[1].
         </span>
-          <br>
+        
         
         <h3 class = "Subtitle"> <!-- Amadika : Add subsection to the stylesheet if you want --> 
             <span> How to Use VideoCrafter </span>
@@ -152,7 +152,7 @@
       We fix a variance schedule, {β} that influences the variance in the noisiness between timesteps. We fix T of these, where T is the chosen number of sampling steps. By the end of this forward process, we've converted the sample to pure noise. <br>
           We can now start generating a never-seen-before image out of this noise. If we try to take the posterior of the previous Markovian process, if the covariance between the distributions at two consecutive timesteps is small enough, it can be shown that the posterior follows approximately the same distribution as the original process. Thus we have an approximate posterior, called p(x_{t-1} | x_t), and the real distribution q(x_{t-1} | x_t). We will leverage the distribution p(x_t) till we can remove all the noise from the sample and resolve it to a new image. Different diffusion models use different models of p. If we try to model p as close to q as possible, p would be a Markovian process as well and be computationally heavy. This is the concept of Denoising Diffusion Probabilistic Models (DDPM). Denoising Diffusion Implicit Models, as used in VideoCrafter, ease computational complexity by assuming a non-Markovian reverse process distribution. <br>
 
-        The training objective of diffusion models is an optimisation function comparing the approximate distribution p and the actual reverse distribution q. Since we cannot possibly compute the real values of these effectively, we use a variational lower bound (as in VAEs), using KL Divergence and cross-entropy. If you wish to learn more about this, you may want to check out <a href = "https://nlp.stanford.edu/fsnlp/mathfound/fsnlp-slides-kl.pdf">this link</a> and then <a href = ""> this one.</a>
+        The training objective of diffusion models is an optimisation function comparing the approximate distribution p and the actual reverse distribution q. Since we cannot possibly compute the real values of these effectively, we use a variational lower bound (as in VAEs), using KL Divergence and cross-entropy. If you wish to learn more about this, you may want to check out <a href = "https://nlp.stanford.edu/fsnlp/mathfound/fsnlp-slides-kl.pdf">this link</a> and then <a href = "https://jaketae.github.io/study/elbo/"> this one.</a>
         </span>
       </p>
 
