@@ -73,6 +73,7 @@
   margin-left: 8%;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
+  overflow: auto;
 }
 
 .tutorial .sub_text a:hover {
@@ -98,6 +99,7 @@
   margin-left: 10%;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
+  overflow: auto;
 }
 .video-item h2 {
   margin: 10px 0;
@@ -110,6 +112,7 @@
   gap: 10em;
   justify-content: center; 
   align-items: center;
+  overflow: auto;
 }
 
 .tutorial .sub_text span {
