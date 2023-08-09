@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang = "en-us">
+
+<head>
+  <meta charset="utf-8">
+  <meta name = "description" content="A studio that shows videos produced by generative AI">
+  <meta name = "keywords" content="Generative AI,video,github">
+  <meta name = "viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+  <title> HKUST AIGC Studio</title>
+
+  <link rel = "stylesheet" href = "/css/reset.css">
+  <link rel = "stylesheet" href = "/css/pageStyle.css">
+  <link rel = "stylesheet" href = "/css/topbar.css">
+  <link rel = "stylesheet" href = "/css/tutorial.css">
+  <link rel = "stylesheet" href = "/css/videoSytle.css">
+</head>
+
+<body>
+  
+  <!--top navigation-->
+
+  <div class = "topbar">
+
+    <div class = "container clearfix">
+      <!--logo-->
+
+      <div class = "topbar-icon leftfix">
+        <a href = "/"> <img class = "logo" src="/images/logo.png" alt="HKUST AIGC logo"> </a>
+      </div>
+
+      <!--navigation-->
+
+      <div class = "topbar-navigation rightfix">
+        <ul class = "list clearfix">
+          <li> 
+            <a href= "/explore"> Explore</a> 
+          </li>
+          <li> 
+            <a href="/showcase" > Showcase </a> 
+          </li>
+        </ul>
+
+        <div class = "Creator">
+          <a href="/videoCreators"> 
+            <button> Create </button>
+          </a> 
+        </div>
+
+        <div class = "searchBox">
+          <form action = "/search/creations/">
+            <input type = "text" name = "searchText" placeholder = "Search HKUST AIGC Studio">
+            <button> search </button>
+          </form> 
+        </div>
+        
+      </div>
+
+    </div>
+  </div>
+
+  <div class = "tutorial">
+
+    <article> 
+      <h2 class = "Title"> <span> VideoFusion </span></h2>
+      <h3 class = "Author"> <span>DING, Kangyuan</span> </h3>
+
+      <h3 class = "Subtitle"> 
+        <span> Introduction </span>
+      </h3>
+      <p class = "Text"> 
+        <span> 
+          VideoFusion is a new DPM-based video generation method proposed by Alidamo in March this year.Compared to some previous video generating methods (Imagen Video, Make-A-Video, etc.), VideoFusion abandoned the common spatial/temporal super-resolution method and used DPM entirely to generate images and video sequences.
+        </span>
+        <span>
+          In this tutorial, you will get an overview of VideoFusion and some basic useful tips of generating prompts and tuning parameters which help you though creating your intended videos in diverse ways.
+        </span>
+      </p>
+
+      <h3 class = "Subtitle">
+        <span> Model Description</span>
+      </h3>
+      <p class = "Text">
+        <span>
+          This model is based on a multi-stage text-to-video generation diffusion model, which inputs a description text and returns a video that matches the text description. Only English input is supported due to its developing methods and training datasets.
+        </span>
+        <span>
+          The text-to-video generation diffusion model consists of three sub-networks: text feature extraction, text feature-to-video latent space diffusion model, and video latent space to video visual space. The diffusion model adopts the Unet3D structure, and realizes the function of video generation through the iterative denoising process from the pure Gaussian noise video.
+        </span>
+        <span>
+          Moreover, unlike standard diffusion process, where frames in the same video clip are destroyed with independent noises, ignoring the content redundancy and temporal correlation, this work presents a decomposed diffusion process via resolving the per-frame noise into a base noise that is shared among all frames and a residual noise that varies along the time axis. The denoising pipeline employs two jointly-learned networks to match the noise decomposition accordingly. This approach, enables the model to generate more realistic videos with richer details and better consistency in its content, surpasses both GAN-based and diffusion-based alternatives in high-quality video generation.
+        </span>
+      </p>
+
+      <h3 class = "Subtitle">
+        <span> How to build a good prompt?</span>
+      </h3>
+
+      <p class = "Text">
+        <span>
+          Now I will show you how to generate short videos using the demo platform on Huggingface Space at
+          <a href = "https://huggingface.co/spaces/damo-vilab/modelscope-text-to-video-synthesis"> https://huggingface.co/spaces/damo-vilab/modelscope-text-to-video-synthesis</a>.
+        </span>
+        <span>
+          First, we have to input our prompt. Prompt is the description or request that we give to generative AI. The description of the content of your video is supposed to be included in the prompt and you could also give more details such as modifiers and style.
+        </span> 
+        <span>
+          This basic structure works well: [subject] in the style of [style or aesthetic]. Treat the prompt as a starting point, then modify it to suit your needs.Here are some examples:
+        </span> 
+        <span>
+          “An astronaut riding a horse.”
+        </span>
+        <span>
+          “Spiderman is surfing.”
+        </span>
+
+        <div class = "video-grid">
+          <div class ="video-item">
+            <video src="/videos/VideoFusion/An astronaut riding a horse.mp4" alt="Video 1" controls></video>
+            <h2> "An astronaut riding a horse" </h2>
+          </div>
+                
+          <div class ="video-item">
+            <video src="/videos/VideoFusion/Spiderman is surfing.mp4" alt="Video 2" controls></video>
+            <h2> "Spiderman is surfing" </h2>
+          </div>
+        </div>
+      </p>
+
+      <p class = "Text">
+        <span>
+          To tuning your prompt, here are two general helpful rules: (1) Be detailed and specific, and (2) Use powerful keywords.
+        </span>
+        <span>
+          Using a prompt generator is also a great way to learn a step-by-step process and important keywords. It is essential for beginners to learn a set of powerful keywords and their expected effects. This is like learning vocabulary for a new language. You can also find a short list of keywords and notes here
+          <a href = "https://stable-diffusion-art.com/how-to-come-up-with-good-prompts-for-ai-image-generation/#Some_good_keywords_for_you"> https://stable-diffusion-art.com/how-to-come-up-with-good-prompts-for-ai-image-generation/#Some_good_keywords_for_you</a>.
+        </span>
+        <span>
+          Here are some examples of tuning prompts with the same theme --- Monkey playing tennis.
+        </span>
+        <div class = "video-grid">
+          <div class ="video-item">
+            <video src="/videos/VideoFusion/A monkey playing tennis.mp4" alt="Video 1" controls></video>
+            <h2> "A monkey playing tennis" </h2>
+          </div>
+                
+          <div class ="video-item">
+            <video src="/videos/VideoFusion/A monkey is playing tennis, giving a hard strike.mp4" alt="Video 2" controls></video>
+            <h2> "A monkey is playing tennis, giving a hard strike" </h2>
+          </div>
+  
+          <div class ="video-item">
+            <video src="/videos/VideoFusion/Two monkeys are playing a exciting tennis match.mp4" alt="Video 3" controls></video>
+            <h2> "Two monkeys are playing a exciting tennis match" </h2>
+          </div>
+        </div>
+      </p>
+
+      
+      <p class = "Text">
+        <span>
+          We could see that simple prompt like "A monkey playing tennis" is ambiguous to AI, which leads to mistakenly generate a video of a monkey playing tennis balls. In this case, I further give the AI a more accurate prompt in order to get the precise result as I imaging.
+        </span>  
+        <span>
+          Furthermore, the followings are 2 more practical tips to make your video diversified and highly realistic. You could use these keyword to produce various videos when playing around the generator.
+        </span>   
+        <span>
+          Movement is one of the hardest things to achieve with text-to-video AI. Generally, verbs help a lot. For more action and movement, try adding keywords like:
+          <br>
+          •	cinematic action
+          <br>
+          •	flying
+          <br>
+          •	speeding
+          <br>
+          •	running
+        </span> 
+        <span>
+          Here are two examples:"cinematic action, high speed car chase" and "flying, an astronaut riding a pegasus".
+        </span>
+        
+        <div class = "video-grid">
+          <div class ="video-item">
+            <video src="/videos/VideoFusion/cinematic action, high speed car chase.mp4" alt="Video 1" controls></video>
+            <h2> "cinematic action, high speed car chase" </h2>
+          </div>
+                
+          <div class ="video-item">
+            <video src="/videos/VideoFusion/flying, an astronaut riding a pegasus.mp4" alt="Video 2" controls></video>
+            <h2> "flying, an astronaut riding a pegasus" </h2>
+          </div>
+        </div>
+      </p>
+
+      <p class="Text">
+        <span>
+          Besides, try using camera-specific terms to produce unexpected good result which brings more variance to your video. Use macro lens as if you are really observing something and adding slow movements could generate a scene in a action movie:
+          •	camera angles (full shot, close up, etc.)
+          •	lens types (macro lens, wide angle, etc.)
+          •	camera movements (slow pan, zoom, etc.)
+        </span>
+        <span>
+          Here are two more examples for your reference:
+          "macro lens, frog on lilypad"
+          "Aerial drone footage of a mountain range"
+        </span>
+        <div class = "video-grid">
+          <div class ="video-item">
+            <video src="/videos/VideoFusion/macro lens, frog on lilypad.mp4" alt="Video 1" controls></video>
+            <h2> "macro lens, frog on lilypad" </h2>
+          </div>
+                
+          <div class ="video-item">
+            <video src="/videos/VideoFusion/Aerial drone footage of a mountain range.mp4" alt="Video 2" controls></video>
+            <h2> "Aerial drone footage of a mountain range" </h2>
+          </div>
+        </div>
+      </p>
+      <p class = "Text">
+        <span>
+          In general, try to explain camera movements simply. So instead of dolly shot, you would say something like zooming in over time or growing over time.
+        </span>
+      </p>
+
+
+      <h3 class = "Subtitle">
+        <span> Advanced Options </span>
+      </h3>
+
+      <p class = "Text">
+        <img src="/images/VideoFusion/advance options.png" alt="advance options" style="display: block; margin:auto; max-width: 60%">
+        <span>
+          Before clicking on the start button, we could further set 3 parameters in order to get the video that we want.
+        </span>
+        
+        <span>
+          A seed is a way of initializing the random number generator that is used to generate the video. It lets you reproduce the same result when you want to. All other settings being equal, if you use the same seed, you will get the same video. If you use a different seed, you will get a different image.
+          Although it is not a very common use case, it can come in handy with comparing various settings. For example, you can use the same seed for two different models and compare the results. Or you can use the same seed for two different schedulers and compare the results.
+        </span>
+      </p>
+
+      <p class = "Text">
+        <span>
+          Number of frames - We all know videos are consisted of a sequence of frames. With more frames, your video could be smoother and its content could be more abundant.
+          The following triple videos are with the same prompt - "A cute puppy walking on the grass" but different frames.
+        </span>
+        <div class = "video-grid">
+          <div class ="video-item">
+            <video src="/videos/VideoFusion/A cute puppy walking on the grass 16 frames.mp4" alt="Video 1" controls></video>
+            <h2> "16 frames" </h2>
+          </div>
+                
+          <div class ="video-item">
+            <video src="/videos/VideoFusion/A cute puppy walking on the grass 24 frames.mp4" alt="Video 2" controls></video>
+            <h2> "24 frames" </h2>
+          </div>
+
+          <div class ="video-item">
+            <video src="/videos/VideoFusion/A cute puppy walking on the grass 32 frames.mp4" alt="Video 3" controls></video>
+            <h2> "32 frames" </h2>
+          </div>
+        </div>
+      </p>
+
+      <p class = "Text">
+        <span>
+          Inference Steps - A diffusion probabilistic model starts with an image that consists of random noise. Then it continously denoises this image over and over again to steer it to the direction of your prompt. Inference steps controls how many steps will be taken during this process. The higher the value, the more steps that are taken to produce the frames in your video (also more time).Usually, the generating time will not grow significantly with the increasing of inference steps
+          Although it is sometimes seen as a “quality slider” it's not necessarily that. Because after a certain number of steps, certain models in certain configurations will start introducing details that you might not like. The sweet spot for speed vs quality differs for each scheduler but 25 is usually a good starting point to experiment.
+        </span>
+
+        <div class = "video-grid">
+          <div class ="video-item">
+            <video src="/videos/VideoFusion/Darth vader surfing in waves 25 steps.mp4" alt="Video 1" controls></video>
+            <h2> Inference steps = 25 </h2>
+          </div>
+          <div class ="video-item">
+            <video src="/videos/VideoFusion/Darth vader surfing in waves 30 steps.mp4" alt="Video 2" controls></video>
+            <h2> Inference steps = 30 </h2>
+          </div>      
+          <div class ="video-item">
+            <video src="/videos/VideoFusion/Darth vader surfing in waves 35steps.mp4" alt="Video 3" controls></video>
+            <h2> Inference steps = 35 </h2>
+          </div>
+        </div>
+      </p>  
+
+      <p class = "Text">
+        <span>
+          Upscaling videos - To upscaling a video using videofusion, one should first generate a video using the lower resolution checkpoint cerspense/zeroscope_v2_576w with TextToVideoSDPipeline, which can then be upscaled using VideoToVideoSDPipeline and cerspense/zeroscope_v2_XL. Zeroscope are watermark-free model and have been trained on specific sizes such as 576x320 and 1024x576. For detailed code, here is the official tutorial given on huggingface. <a href = "https://huggingface.co/docs/diffusers/main/en/api/pipelines/text_to_video#diffusers">https://huggingface.co/docs/diffusers/main/en/api/pipelines/text_to_video#diffusers</a> for your reference.
+        </span>
+        <img src="/images/VideoFusion/darthvader_cerpense.gif" alt="advance options" style="display: block; margin:auto; max-width: 60%">
+      </p>
+
+      <h3 class = "Subtitle">
+        <span> Conclusion </span>
+      </h3>
+
+      <p class = "Text">
+        <span>
+          In general, Videofusion offers you a powerful generative AI tool for designing realistic videos from text prompts. Hopefully this tutorial provides guidance for using Videofusion in a practical to fulfill your need.
+        </span>
+      </p>
+
+      <h3 class = "Subtitle">
+        <span> Reference </span>
+      </h3>
+
+      <p class = "Text">
+        <span>
+          Zhengxiong Luo, Dayou Chen, Yingya Zhang, Yan Huang, Liang Wang. VideoFusion: Decomposed Diffusion Models for High-Quality Video Generation(2023)
+          University of Chinese Academy of Sciences (UCAS), Alibaba Group. arXiv:2303.08320 </a>
+        </span>
+        
+      </p>
+
+    </article>
+
+  </div>
+</body>
