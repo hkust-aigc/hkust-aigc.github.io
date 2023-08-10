@@ -76,6 +76,9 @@
         </span>
       </p>
 
+      <br>
+
+
       <h3 class = "Subtitle">
         <span> Model Description</span>
       </h3>
@@ -90,6 +93,8 @@
           Moreover, unlike standard diffusion process, where frames in the same video clip are destroyed with independent noises, ignoring the content redundancy and temporal correlation, this work presents a decomposed diffusion process via resolving the per-frame noise into a base noise that is shared among all frames and a residual noise that varies along the time axis. The denoising pipeline employs two jointly-learned networks to match the noise decomposition accordingly. This approach, enables the model to generate more realistic videos with richer details and better consistency in its content, surpasses both GAN-based and diffusion-based alternatives in high-quality video generation.
         </span>
       </p>
+
+  
 
       <h3 class = "Subtitle">
         <span> How to build a good prompt?</span>
@@ -118,9 +123,9 @@
             <video src="/videos/VideoFusion/An astronaut riding a horse.mp4" alt="Video 1" controls></video>
             <h2> "An astronaut riding a horse" </h2>
           </div>
-                
+          
           <div class ="video-item">
-            <video src="/videos/VideoFusion/Spiderman is surfing.mp4" alt="Video 2" controls></video>
+            <video src="/videos/VideoFusion/Spiderman is surfing1.mp4" alt="Video 2" controls></video>
             <h2> "Spiderman is surfing" </h2>
           </div>
         </div>
@@ -147,14 +152,12 @@
             <video src="/videos/VideoFusion/A monkey is playing tennis, giving a hard strike.mp4" alt="Video 2" controls></video>
             <h2> "A monkey is playing tennis, giving a hard strike" </h2>
           </div>
-  
           <div class ="video-item">
-            <video src="/videos/VideoFusion/Two monkeys are playing a exciting tennis match.mp4" alt="Video 3" controls></video>
-            <h2> "Two monkeys are playing a exciting tennis match" </h2>
+            <video src="/videos/VideoFusion/A monkey practising tennis giving a smooth strike.mp4" alt="Video 2" controls></video>
+            <h2> "A monkey practising tennis giving a smooth strike" </h2>
           </div>
         </div>
       </p>
-
       
       <p class = "Text">
         <span>
@@ -165,19 +168,14 @@
         </span>   
         <span>
           Movement is one of the hardest things to achieve with text-to-video AI. Generally, verbs help a lot. For more action and movement, try adding keywords like:
-          <br>
           •	cinematic action
-          <br>
           •	flying
-          <br>
           •	speeding
-          <br>
           •	running
         </span> 
         <span>
           Here are two examples:"cinematic action, high speed car chase" and "flying, an astronaut riding a pegasus".
         </span>
-        
         <div class = "video-grid">
           <div class ="video-item">
             <video src="/videos/VideoFusion/cinematic action, high speed car chase.mp4" alt="Video 1" controls></video>
@@ -215,7 +213,8 @@
           </div>
         </div>
       </p>
-      <p class = "Text">
+
+      <p class="Text">
         <span>
           In general, try to explain camera movements simply. So instead of dolly shot, you would say something like zooming in over time or growing over time.
         </span>
@@ -236,13 +235,13 @@
           A seed is a way of initializing the random number generator that is used to generate the video. It lets you reproduce the same result when you want to. All other settings being equal, if you use the same seed, you will get the same video. If you use a different seed, you will get a different image.
           Although it is not a very common use case, it can come in handy with comparing various settings. For example, you can use the same seed for two different models and compare the results. Or you can use the same seed for two different schedulers and compare the results.
         </span>
-      </p>
-
-      <p class = "Text">
         <span>
           Number of frames - We all know videos are consisted of a sequence of frames. With more frames, your video could be smoother and its content could be more abundant.
           The following triple videos are with the same prompt - "A cute puppy walking on the grass" but different frames.
         </span>
+      </p>
+
+      <p class = "Text">
         <div class = "video-grid">
           <div class ="video-item">
             <video src="/videos/VideoFusion/A cute puppy walking on the grass 16 frames.mp4" alt="Video 1" controls></video>
@@ -306,10 +305,11 @@
 
       <p class = "Text">
         <span>
-          Zhengxiong Luo, Dayou Chen, Yingya Zhang, Yan Huang, Liang Wang. VideoFusion: Decomposed Diffusion Models for High-Quality Video Generation(2023)
-          University of Chinese Academy of Sciences (UCAS), Alibaba Group. arXiv:2303.08320 </a>
+          1. What are Diffusion Models? (2021) <a href = "https://lilianweng.github.io/posts/2021-07-11-diffusion-models/#:~:text=Diffusion%20models%20are%20inspired%20by,data%20samples%20from%20the%20noise">https://lilianweng.github.io/posts/2021-07-11-diffusion-models/#:~:text=Diffusion%20models%20are%20inspired%20by,data%20samples%20from%20the%20noise</a> 
         </span>
-        
+        <span>
+          2. Luo, Z., Chen, D., Zhang, Y., Huang, Y., Wang, L., Shen, Y., Zhao, D., Zhou, J., & Tan, T. (2023). VideoFusion: Decomposed Diffusion Models for High-Quality Video Generation. arXiv (Cornell University). <a href= "https://doi.org/10.48550/arxiv.2303.08320">https://doi.org/10.48550/arxiv.2303.08320</a>
+        </span>
       </p>
 
     </article>
