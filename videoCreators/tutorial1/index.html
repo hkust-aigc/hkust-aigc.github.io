@@ -101,8 +101,10 @@
                 <li> VideoLoRA : a finetuning mechanism to train the LVDM on specific datasets and reduce training parameters  
                 <li> T2I-adapter : a conditional adapter based on T2I-adpater to increase the controls on video generation
             </ul>
+          </span>
       </p>
-    <br>
+
+      
         <h3 class = "Subtitle"> <!-- Amadika : Add subsection to the stylesheet if you want --> 
             <span> How to Use VideoCrafter </span>
         </h3>
@@ -112,13 +114,14 @@
           <br>
           Prompt engineering : prompt engineering is the most important parameter when it comes to generative models. A good resource to understand this is <a href="https://stable-diffusion-art.com/how-to-come-up-with-good-prompts-for-ai-image-generation/" >here </a>. <br>
 
-          The HuggingFace demo of VideoCrafter shows us the features we have available to play around with. <br> <img src= "/videos/VideoCrafter/Screenshot 2023-08-07 at 10.17.54.png">
+          The HuggingFace demo of VideoCrafter shows us the features we have available to play around with. 
+          <img src= "/videos/VideoCrafter/Screenshot 2023-08-07 at 10.17.54.png" style="display: block; margin:auto; max-width: 60%">
           <ul>
               <li>
-                Sampling steps : the number of sampling steps used adjusts how much the diffusion model denoises the data (which in a diffusion model is 100% random noise) per step. At every step the model is predicting what the image is supposed to look like. Adding more steps implies that execution will take longer but at every step the model is making a probabilistic assumption based on a less noisy image.
-                
+                <span>Sampling steps : the number of sampling steps used adjusts how much the diffusion model denoises the data (which in a diffusion model is 100% random noise) per step. At every step the model is predicting what the image is supposed to look like. Adding more steps implies that execution will take longer but at every step the model is making a probabilistic assumption based on a less noisy image.
+                </span>
               </li>
-            <h2> Prompt: "teddy bear playing the piano, high definition, 4k", all other settings default</h2>
+              <h2> Prompt: "teddy bear playing the piano, high definition, 4k", all other settings default</h2>
               <div class = "video-grid">
               
                 <div class = "video-item">
@@ -176,7 +179,7 @@
           Latent diffusion models are a type of machine learning model that map the characteristics of a dataset to a lower-dimensional latent space through an encoder. 
           A key intuition when considering how machine learning models is : it is desired that every arbitrary data sample can be represented by a well-understood distribution so that established properties can be used to make computations more efficient. <br>
           
-          Diffusion models "generate" by "diffusing" an existing image of a certain class into complete noise, and then un-diffusing it into a sensible sample. This ends up generating a new image as the calculations are approximate and we make smart assumptions to preserve the structure of the image while making calculations more efficient. 
+          &nbsp; &nbsp; Diffusion models "generate" by "diffusing" an existing image of a certain class into complete noise, and then un-diffusing it into a sensible sample. This ends up generating a new image as the calculations are approximate and we make smart assumptions to preserve the structure of the image while making calculations more efficient. 
   
       In an attempt to make this less hand-wavey, let's take a bird-eye's view of the mathematics. 
       We have a data point which we will use to convert into an image of the same category. 
@@ -187,8 +190,6 @@
         The training objective of diffusion models is an optimisation function comparing the approximate distribution p and the actual reverse distribution q. Since we cannot possibly compute the real values of these effectively, we use a variational lower bound (as in VAEs), using KL Divergence and cross-entropy. If you wish to learn more about this, you may want to check out <a href = "https://nlp.stanford.edu/fsnlp/mathfound/fsnlp-slides-kl.pdf">this link</a> and then <a href = "https://jaketae.github.io/study/elbo/"> this one.</a>
         </span>
       </p>
-
-      <br>
 
       <h3 class = "Subtitle">
         <span> Inferences </span>
@@ -215,14 +216,12 @@
         </div>
       </div> -->
 
-      <br>
-      
       <h3 class = "Subtitle">
         <span> References </span>
       </h3>
       <p class = "Text">
         <span>
-          &nbsp; &nbsp;<br> He, Y., Yang, T., Zhang, Y., Shan, Y. & Chen, Q. 2023 Latent Video Diffusion Models for High-Fidelity Long Video Generation. arXiv:2211.13221 https://arxiv.org/abs/2211.13221 <br>
+          He, Y., Yang, T., Zhang, Y., Shan, Y. & Chen, Q. 2023 Latent Video Diffusion Models for High-Fidelity Long Video Generation. arXiv:2211.13221 https://arxiv.org/abs/2211.13221 <br>
           Goodfellow, I., Pouget-Abadie, J., Mirza M., Xu, B., Warde-Farley, D., Qzair, S., Courville, A. & Bengio, Y. 2014 General Adversarial Networks arXiv:1406.2661 https://arxiv.org/abs/1406.2661 <br>
 Feller, W. 1949 On The Theory of Stochastic Processes With Particular Reference to Applications Project for Research in Probability <br>
 Sohl-Dickstein, J., Weiss, E., Maheswaranathan, N., & Ganguli, S. 2015 Deep Unsupervised Learning using Nonequilibrium Thermodynamics arXiv:1503.03585 https://arxiv.org/abs/1503.03585 <br>
